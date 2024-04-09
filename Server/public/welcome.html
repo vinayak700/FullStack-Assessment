@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Server</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #4a148c, #7b1fa2, #9c27b0, #ba68c8);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #4a148c;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        p {
+            color: #7b1fa2;
+            animation: fadeInUp 1.5s ease forwards;
+        }
+
+        .api-link {
+            margin-top: 20px;
+            animation: fadeInUp 2s ease forwards;
+        }
+
+        a {
+            text-decoration: none;
+            color: #9c27b0;
+            transition: color 0.3s ease;
+        }
+
+        a:hover {
+            color: #ba68c8;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Welcome to Our Server</h1>
+        <p>API for Full Stack Application.</p>
+        <div class="api-link">
+            <p>Explore our API documentation:</p>
+            <a href="/api-docs">API Documentation</a>
+        </div>
+    </div>
+</body>
+
+</html>

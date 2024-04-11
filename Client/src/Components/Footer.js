@@ -5,6 +5,7 @@ import {
   faSquareFacebook,
   faInstagram,
   faPinterest,
+  faDribbble,
 } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
 
@@ -20,6 +21,9 @@ const Footer = () => {
             grow and get hired.
           </p>
           <div className="flex">
+            <Link>
+              <FontAwesomeIcon icon={faDribbble} className="mr-3" />
+            </Link>
             <Link>
               <FontAwesomeIcon icon={faTwitter} className="mr-3" />
             </Link>

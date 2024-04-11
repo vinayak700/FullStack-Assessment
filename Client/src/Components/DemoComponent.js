@@ -24,31 +24,6 @@ const DemoComponent = () => {
     fetchImages();
   }, []);
 
-  // Generate demo text using OpenAI Chat API
-  // useEffect(() => {
-  //   axios
-  //     .post(
-  //       "https://api.openai.com/v1/engines/text-davinci-003/completions",
-  //       {
-  //         prompt: "Generate demo text for a website.",
-  //         max_tokens: 100,
-  //       },
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           Authorization:
-  //             "Bearer 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",
-  //         },
-  //       }
-  //     )
-  //     .then((response) => {
-  //       setDemoText(response.data.choices[0].text);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error generating demo text: ", error);
-  //     });
-  // }, []);
-
   return (
     <div className="flex flex-col justify-top items-center mt-16">
       <div className="max-w-7xl w-full p-8 text-left">

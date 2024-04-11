@@ -4,7 +4,7 @@ Welcome to our stunning MERN application project! This project involves building
 
 ### Clone the Github Repo
 ```sh
-git clone 
+git clone git@github.com:vinayak700/FullStack-Assessment.git
 ```
 
 ### Client Application

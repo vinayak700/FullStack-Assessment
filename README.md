@@ -2,11 +2,6 @@
 
 Welcome to our stunning MERN application project! This project involves building a modern web application with interactive features. Below, you'll find the URLs for the client and server applications, along with the required tech stacks.
 
-### Clone the Github Repo
-```sh
-git clone git@github.com:vinayak700/FullStack-Assessment.git
-```
-
 ### Client Application
 
 🚀 **[Client URL](https://chimerical-palmier-5f97df.netlify.app)**
@@ -20,6 +15,11 @@ The client application is built using React, providing a dynamic and interactive
 The server application is powered by Node.js and Express.js, providing robust backend APIs for handling user requests and interacting with the database. MongoDB is used as the database to store user data securely.
 
 ## Project Setup Guide
+
+### Clone the Github Repo
+```sh
+git clone git@github.com:vinayak700/FullStack-Assessment.git
+```
 
 This guide covers the setup process for both the Client and Server sides of your application.
 

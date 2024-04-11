@@ -29,7 +29,7 @@ npm install
 
 To set up environment variables, follow these steps:
 
-1. Create a `.env` file inside your root directory.
+1. Create a `.env` file inside your client root directory.
 
 2. Open the `.env` file using a text editor.
 
@@ -102,6 +102,7 @@ npm run start
 - **Image Storage**: Cloudinary
 - **Authentication**: JWT (JSON Web Tokens)
 - **Encryption**: bcrypt
+- **Email Service**: Resend
 
 These tech stacks ensure a modern, scalable, and secure web application that meets the highest standards of performance and user experience.
 

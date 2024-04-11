@@ -2,6 +2,11 @@
 
 Welcome to our stunning MERN application project! This project involves building a modern web application with interactive features. Below, you'll find the URLs for the client and server applications, along with the required tech stacks.
 
+### Clone the Github Repo
+```sh
+git clone 
+```
+
 ### Client Application
 
 🚀 **[Client URL](https://chimerical-palmier-5f97df.netlify.app)**

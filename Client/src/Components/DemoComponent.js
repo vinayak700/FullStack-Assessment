@@ -3,7 +3,6 @@ import axios from "axios";
 
 const DemoComponent = () => {
   const [imageUrls, setImageUrls] = useState([]);
-  const [demoText, setDemoText] = useState("");
 
   // Fetch random images from Unsplash
   useEffect(() => {

@@ -121,7 +121,7 @@ const ProfilePage = () => {
               dispatch(toggleProfile({ token }))
                 .unwrap()
                 .then(() => {
-                  if (!user.isPurposeVisited) {
+                  if (!user?.isPurposeVisited) {
                     navigate("/purpose");
                   } else {
                     navigate("/home");

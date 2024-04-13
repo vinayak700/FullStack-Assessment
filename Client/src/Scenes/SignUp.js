@@ -94,7 +94,7 @@ const SignUp = () => {
       {/* Image Container */}
       <div className="w-full lg:w-2/5 h-40 lg:h-screen bg-blue-500 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"
+          src="https://cdn.dribbble.com/userupload/13880949/file/original-156bb704f411cacf69e55cbe9f464a50.png?resize=1200x900"
           alt="A relevant description"
           className="w-full h-full object-cover"
         />

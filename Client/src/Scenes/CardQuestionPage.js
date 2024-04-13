@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import {
   savePreference,
   togglePurpose,
@@ -58,7 +60,10 @@ const CardQuestionPage = () => {
     <form onSubmit={handleSubmit}>
       <div className="h-screen">
         <h1 className="text-2xl font-bold text-pink-600 mt-12 pl-8">
-          Dribbble
+          Dribbble{" "}
+          <Link to={"/profile"}>
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </Link>
         </h1>
         <div className="flex flex-col justify-center items-center mt-8 lg:mt-16">
           <h1 className="text-3xl font-bold text-gray-800 mb-4 text-center">
@@ -86,6 +91,13 @@ const CardQuestionPage = () => {
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">
                   {option.title}
                 </h3>
+                {selectedOption === option.id && (
+                  <p className="text-gray-600 mb-2 w-1/2">
+                    With Over 7 million shots from a vast community of
+                    designers, Dribbble is the leading source of design
+                    inspiration.
+                  </p>
+                )}
                 <input
                   type="radio"
                   id={option.id}

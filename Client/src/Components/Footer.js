@@ -201,6 +201,13 @@ const Footer = () => {
           </ul>
         </div>
       </div>
+      <hr className="my-3"/>
+      <div className="flex justify-between mb-3 mx-5">
+        <p className="text-gray-400">@ 2023 Dribbble. All rights reserved</p>
+        <p className="text-gray-400">
+          <span className="font-bold text-slate-950">20,501,853</span> shots dribbbled{" "}
+        </p>
+      </div>
     </div>
   );
 };

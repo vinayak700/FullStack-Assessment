@@ -142,7 +142,9 @@ const Navbar = () => {
 
       {/* Navbar for larger screens */}
       <nav className="hidden lg:flex justify-between items-center bg-transparent p-4">
-        <h1 className="text-lg font-bold text-black font-heading">Dribble</h1>
+        <h1 className="text-lg font-bold text-pink-400 font-heading">
+          Dribble
+        </h1>
         <ul className="flex space-x-4 text-gray-700">
           <li>
             <NavLink
@@ -200,7 +202,7 @@ const Navbar = () => {
               placeholder="Search..."
               className="rounded-lg p-2 pl-8 bg-white border border-gray-300 focus:outline-none"
             />
-            <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none pb-2">
+            <div className="absolute inset-y-0 left-0 pl-2 flex items-center pointer-events-none">
               <FontAwesomeIcon icon={faSearch} color="pink" />
             </div>
           </div>

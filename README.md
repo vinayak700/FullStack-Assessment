@@ -16,6 +16,11 @@ The server application is powered by Node.js and Express.js, providing robust ba
 
 ## Project Setup Guide
 
+### Clone the Github Repo
+```sh
+git clone git@github.com:vinayak700/FullStack-Assessment.git
+```
+
 This guide covers the setup process for both the Client and Server sides of your application.
 
 ## Client Setup

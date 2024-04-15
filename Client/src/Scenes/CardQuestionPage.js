@@ -91,13 +91,6 @@ const CardQuestionPage = () => {
                 <h3 className="text-lg font-semibold text-gray-800 mb-2 text-center">
                   {option.title}
                 </h3>
-                {selectedOption === option.id && (
-                  <p className="text-gray-600 mb-2 w-1/2">
-                    With Over 7 million shots from a vast community of
-                    designers, Dribbble is the leading source of design
-                    inspiration.
-                  </p>
-                )}
                 <input
                   type="radio"
                   id={option.id}

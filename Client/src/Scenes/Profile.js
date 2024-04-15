@@ -30,8 +30,6 @@ const ProfilePage = () => {
       .unwrap()
       .then(() => {
         dispatch(userActions.toggleProfile());
-
-        // toast.success("User Profile updated!!!");
       });
   };
 
@@ -74,11 +72,12 @@ const ProfilePage = () => {
                 height: "12rem",
                 width: "12rem",
                 border: "2px solid gray",
+                borderStyle: "dotted",
               }}
             >
               <img
                 src={user?.previewUrl}
-                alt="Profile"
+                alt=""
                 className="absolute inset-0 h-full w-full object-cover rounded-full text-black"
               />
             </div>

@@ -3,62 +3,46 @@ import { Link, useNavigate } from "react-router-dom";
 import { loginUser, userSelector } from "../Redux/Reducers/userReducer";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import ErrorMessages from "../ErrorMessage";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const SignIn = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const { error } = useSelector(userSelector) || null;
+  const [loading, setLoading] = useState(false);
 
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+    },
+    validationSchema: Yup.object({
+      email: Yup.string()
+        .required(`Email ${ErrorMessages.emptyRegexMessage}`)
+        .matches(/^[^\s@]+@[^\s@]+\.[^\s@]+$/, ErrorMessages.emailRegexMessage),
+      password: Yup.string().required(
+        `Password ${ErrorMessages.emptyRegexMessage}`
+      ),
+    }),
+    onSubmit: async (userData) => {
+      setLoading(true);
+      try {
+        dispatch(loginUser(userData))
+          .unwrap()
+          .then(() => {
+            navigate("/purpose");
+            toast.success("User Logged In");
+          });
+      } catch (error) {
+        alert("Please fill in all the required fields.");
+      }
+      setLoading(false);
+    },
   });
-  const [emailError, setEmailError] = useState("");
-
-  // Checking form validation
-  const isFormValid = () => {
-    return (
-      formData.email.trim() !== "" &&
-      formData.password.trim() !== "" &&
-      !emailError
-    );
-  };
-
-  // Handle Input Change
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-
-    if (name === "email") {
-      validateEmail(value);
-    }
-  };
-
-  // Email Validator
-  const validateEmail = (email) => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    setEmailError(!regex.test(email) ? "Invalid email address" : "");
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isFormValid()) {
-      // Dispatch signup action
-      dispatch(loginUser(formData))
-        .unwrap()
-        .then(() => {
-          navigate("/purpose");
-          toast.success("User Logged In");
-        });
-    } else {
-      console.log("Please fill in all fields and accept terms.");
-    }
-    setFormData({ email: "", password: "" });
-  };
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-gray-100">
@@ -92,54 +76,99 @@ const SignIn = () => {
               </ul>
             </div>
           )}
-          <form>
+          <div className=" md:relative w-auto md:h-20 h-14 md:text-nowrap  md:text-xs md:pt-0 pt-2 text-xs text-red-500 ">
+            <li
+              className={`   transition duration-300 ease-in-out opacity-0  ${
+                formik.errors.email && formik.touched.email ? "opacity-100" : ""
+              }`}
+            >
+              {formik.touched.email && formik.errors.email
+                ? formik.errors.email
+                : null}
+            </li>
+            <li
+              className={`  transition duration-300 ease-in-out opacity-0   ${
+                formik.errors.password && formik.touched.password
+                  ? "opacity-100"
+                  : ""
+              }`}
+            >
+              {formik.touched.password && formik.errors.password
+                ? formik.errors.password
+                : null}
+            </li>
+          </div>
+          <form onSubmit={formik.handleSubmit}>
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                Email
-              </label>
+              <div className="flex gap-2">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="email"
+                >
+                  Email
+                </label>
+                <img
+                  className={` ${
+                    formik.touched.email && !formik.values.email === true
+                      ? "h-4 self-center"
+                      : "hidden"
+                  }`}
+                  src="https://res.cloudinary.com/df8suxer2/image/upload/v1712836234/o4pfs1kqxhyrv6qqnv64.svg"
+                  alt="attention"
+                />
+              </div>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="email"
                 type="email"
                 autoComplete="username"
                 name="email"
-                value={formData.email}
+                value={formik.email}
                 placeholder="Your email"
-                onChange={handleInputChange}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
             </div>
             <div className="mb-6">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
+              <div className="flex gap-2">
+                <label
+                  className="block text-gray-700 text-sm font-bold mb-2"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+                <img
+                  className={` ${
+                    formik.touched.password && !formik.values.password === true
+                      ? "h-4 self-center"
+                      : "hidden"
+                  }`}
+                  src="https://res.cloudinary.com/df8suxer2/image/upload/v1712836234/o4pfs1kqxhyrv6qqnv64.svg"
+                  alt="attention"
+                />
+              </div>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="password"
                 type="password"
                 autoComplete="current-password"
                 name="password"
-                value={formData.password}
+                value={formik.password}
                 placeholder="******************"
-                onChange={handleInputChange}
+                onBlur={formik.handleBlur}
+                onChange={formik.handleChange}
               />
             </div>
-            <div className="flex items-center justify-center lg:justify-between">
+            <div className="flex items-center justify-center lg:justify-between gap-2">
               <button
-                className={`bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full lg:w-auto ${
-                  isFormValid() ? "" : "cursor-not-allowed opacity-50"
-                }`}
+                className={`bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full lg:w-auto`}
                 type="submit"
-                onClick={handleSubmit}
-                disabled={!isFormValid()}
               >
                 Sign In
               </button>
+              {loading ? (
+                <ClipLoader color="#36d7b7" loading={loading} size={25} />
+              ) : null}
             </div>
           </form>
         </div>

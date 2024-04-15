@@ -1,33 +1,7 @@
-// import { useState } from "react";
 import { Footer } from "../Components";
-// import { useSelector, useDispatch } from "react-redux";
-// import { userSelector } from "../Redux/Reducers/userReducer";
-// import { toast } from "react-toastify";
-// import { unwrapResult } from "@reduxjs/toolkit";
 import Email from "../Components/Email";
 
 const Home = () => {
-  // const { projects, token } = useSelector(userSelector);
-  // const dispatch = useDispatch();
-
-  // const [data, setData] = useState([]);
-
-  // useEffect(() => {
-  //   const fetchAllUploads = () => {
-  //     try {
-  //       dispatch(getAllUploads({ token }));
-  //       // const allProjects = await dispatch(getAllUploads({ token }));
-  //       // .then(() => unwrapResult())
-  //       // .then(() => {
-  //       //   setData(projects);
-  //       console.log(projects);
-  //       // });
-  //     } catch (error) {
-  //       toast.error("Could Not load all User Projects");
-  //     }
-  //   };
-  //   fetchAllUploads();
-  // }, []);
 
   return (
     <>

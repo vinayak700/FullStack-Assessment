@@ -47,9 +47,11 @@ const Navbar = () => {
       {/* Header for larger screens */}
       <header className="bg-transparent p-4 flex justify-between items-center lg:hidden">
         {/* Logo */}
-        <h1 className="text-lg font-bold text-pink-400 font-heading">
-          Dribble
-        </h1>
+        <NavLink to={"/home"}>
+          <h1 className="text-lg font-bold text-pink-400 font-heading">
+            Dribble
+          </h1>
+        </NavLink>
 
         {/* Hamburger Icon (for mobile screens) */}
         <div className="flex items-center">
@@ -143,7 +145,7 @@ const Navbar = () => {
       {/* Navbar for larger screens */}
       <nav className="hidden lg:flex justify-between items-center bg-transparent p-4">
         <h1 className="text-lg font-bold text-pink-400 font-heading">
-          Dribble
+          <NavLink to={"/home"}>Dribble</NavLink>
         </h1>
         <ul className="flex space-x-4 text-gray-700">
           <li>

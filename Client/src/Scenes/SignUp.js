@@ -8,7 +8,6 @@ import {
   registerUser,
   userSelector,
 } from "../Redux/Reducers/userReducer";
-import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -65,7 +64,6 @@ const SignUp = () => {
             .then(() => {
               navigate("/profile");
             });
-          toast.success("User Signed Up Successfully!");
         })
         .catch((err) => {
           alert(err);
@@ -85,14 +83,19 @@ const SignUp = () => {
         />
       </div>
 
+      <div className="absolute left-5 top-7">
+        <div className="text-2xl font-bold text-pink-500">dribbble</div>
+        <div className="text-lg text-gray-800 mt-1">
+          Discover the world's top Designers & Creatives.
+        </div>
+      </div>
+
       {/* Form Container */}
       <div className="w-full lg:w-3/5 flex flex-col justify-center items-center p-6 lg:p-12">
         <div className="mb-6 lg:mb-10 text-left">
           <p className="text-gray-700 text-sm">
             Already a member?{" "}
-            <Link to={"/signIn"} className="text-blue-500 hover:underline">
-              Sign In
-            </Link>
+            <Link className="text-blue-500 hover:underline">Sign In</Link>
           </p>
         </div>
         <div className="w-full max-w-md">
@@ -278,7 +281,7 @@ const SignUp = () => {
                 id="password"
                 type="password"
                 autoComplete="current-password"
-                placeholder="******************"
+                placeholder="6+ characters"
                 value={formik.password}
                 onBlur={formik.handleBlur}
                 name="password"

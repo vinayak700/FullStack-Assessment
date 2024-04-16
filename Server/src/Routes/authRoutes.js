@@ -2,7 +2,6 @@ import express from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { User } from "../Models/User.js";
-import sendEmail from "../../config/mail.js";
 
 const authRouter = express.Router();
 
@@ -23,13 +22,6 @@ authRouter.post("/signup", async (req, res, next) => {
       password: passwordHash,
     });
     await newUser.save();
-
-    // Sending thank you email to the new user
-    try {
-      await sendEmail(newUser.email);
-    } catch (error) {
-      console.log(error.message);
-    }
 
     res.status(201).json(newUser);
   } catch (error) {

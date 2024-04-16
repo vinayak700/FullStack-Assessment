@@ -40,10 +40,6 @@ app.get("/", (req, res) => {
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/user", userRoutes);
 
-/* APPLICATION ERROR HANDLERS */
-// app.use(handleValidationError);
-// app.use(errorHandler);
-
 /* Listening to Server */
 app.listen(8080, () => {
   console.log("Server is running on http://localhost:8080");

@@ -15,7 +15,11 @@ const Footer = () => {
       <div className="container mx-auto flex flex-wrap px-4 md:px-8">
         {/* First Column */}
         <div className="w-full lg:w-1/6 md:w-1/2 mb-4 md:mb-0 pr-2">
-          <h2 className="text-lg font-bold mb-2 text-gray-800">dribbble</h2>
+          <img
+            className="h-14"
+            src="https://res.cloudinary.com/df8suxer2/image/upload/v1713085030/xlsuba1pijqdde2abjil.png"
+            alt="logo"
+          />
           <p className="text-sm mb-4">
             Dribble is the world's leading community for creatives to share,
             grow and get hired.
@@ -201,11 +205,12 @@ const Footer = () => {
           </ul>
         </div>
       </div>
-      <hr className="my-3"/>
+      <hr className="my-6" />
       <div className="flex justify-between mb-3 mx-5">
         <p className="text-gray-400">@ 2023 Dribbble. All rights reserved</p>
         <p className="text-gray-400">
-          <span className="font-bold text-slate-950">20,501,853</span> shots dribbbled{" "}
+          <span className="font-bold text-slate-950">20,501,853</span> shots
+          dribbbled
         </p>
       </div>
     </div>

@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
-  toggleProfile,
-  updateUser,
-  userActions,
+  sendImageAPI,
+  updateProfile,
   userSelector,
 } from "../Redux/Reducers/userReducer.js";
+import img from "../assets/dribbble.png";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ProfilePage = () => {
   const { user, token } = useSelector(userSelector) || null;
@@ -21,25 +23,28 @@ const ProfilePage = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const pic = document.getElementById("pictureFile");
-    const formData = new FormData();
-    formData.append("avatar", profileData.avatar || pic.files[0]);
-    formData.append("location", profileData.location);
-
-    dispatch(updateUser({ data: formData, userId: user._id, token }))
+    dispatch(
+      updateProfile({ data: profileData.location, userId: user?._id, token })
+    )
       .unwrap()
       .then(() => {
-        dispatch(userActions.toggleProfile());
+        navigate("/preference");
       });
   };
 
   // Handle Image Change
-  const handleImageChange = async (e) => {
+  const handleImageUpload = async (e) => {
     setProfileData((prevProfileData) => ({
       ...prevProfileData,
       avatar: e.target.files[0],
     }));
-    handleSubmit(e);
+    const formData = new FormData();
+    formData.append("avatar", e.target.files[0] || "");
+    dispatch(sendImageAPI({ formData, token }))
+      .unwrap()
+      .then(() => {
+        setProfileData(user);
+      });
   };
 
   useEffect(() => {
@@ -50,10 +55,8 @@ const ProfilePage = () => {
     <>
       {/* Heading for the application */}
       <div className="h-screen">
-        <h1 className="text-2xl font-bold text-pink-600 mt-12 pl-8">
-          Dribbble
-        </h1>
-        <form className="container mx-auto mt-8 flex flex-col m-auto w-full md:w-2/3 lg:w-1/2 p-8">
+        <img className=" mt-6 pl-8 h-24" src={img} alt="logo" />
+        <form className="container mx-auto mt-2 flex flex-col m-auto w-full md:w-2/3 lg:w-1/2 p-8">
           <h2 className="text-3xl font-bold text-gray-800 mb-2">
             Welcome! Let's create your profile
           </h2>
@@ -75,16 +78,24 @@ const ProfilePage = () => {
                 borderStyle: "dotted",
               }}
             >
-              <img
-                src={user?.previewUrl}
-                alt=""
-                className="absolute inset-0 h-full w-full object-cover rounded-full text-black"
-              />
+              {user?.previewUrl !== "" ? (
+                <img
+                  src={user?.previewUrl}
+                  alt=""
+                  className="absolute inset-0 h-full w-full object-cover rounded-full text-black"
+                />
+              ) : (
+                <FontAwesomeIcon
+                  icon={faCamera}
+                  className="text-pink-400 relative top-20 left-12 lg:left-20 md:left-16"
+                  size="2x"
+                />
+              )}
             </div>
             <div>
               <label
                 htmlFor="pictureFile"
-                className="cursor-pointer bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded inline-block text-center"
+                className="cursor-pointer hover:bg-pink-500 hover:text-white text-slate-800 font-bold py-2 px-4 rounded inline-block text-center"
               >
                 Choose Image
               </label>
@@ -94,8 +105,9 @@ const ProfilePage = () => {
                 accept="image/*"
                 name="picture"
                 className="hidden"
-                onChange={handleImageChange}
+                onChange={handleImageUpload}
               />
+              <p className="text-gray-400">Or Chose one of our defaults</p>
             </div>
           </div>
 
@@ -107,7 +119,7 @@ const ProfilePage = () => {
             type="text"
             placeholder="Enter your location"
             className="rounded-lg p-2 border border-gray-300 focus:outline-none mb-4 w-full"
-            value={profileData.location}
+            value={profileData?.location}
             onChange={(e) =>
               setProfileData({ ...profileData, location: e.target.value })
             }
@@ -115,18 +127,7 @@ const ProfilePage = () => {
           <button
             className="bg-pink-500 hover:bg-pink-700 text-white font-bold py-2 px-4 rounded w-full"
             type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(toggleProfile({ token }))
-                .unwrap()
-                .then(() => {
-                  if (!user?.isPurposeVisited) {
-                    navigate("/purpose");
-                  } else {
-                    navigate("/home");
-                  }
-                });
-            }}
+            onClick={handleSubmit}
           >
             Next
           </button>

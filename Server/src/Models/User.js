@@ -25,8 +25,6 @@ const userSchema = new mongoose.Schema(
     },
     previewUrl: { type: String, default: "" },
     location: { type: String, default: "" },
-    isProfileVisited: { type: Boolean, default: false },
-    isPurposeVisited: { type: Boolean, default: false },
   },
   { timestamps: true }
 );
